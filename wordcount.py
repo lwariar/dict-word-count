@@ -7,6 +7,7 @@ def get_word_count(file_name):
         line.strip()
         words = line.split(" ")
         for word in words:
+            word.strip('\n')
             word_counts[word] = word_counts.get(word, 0) + 1
     for key in word_counts:
         print(f"{key}, {word_counts[key]}")
