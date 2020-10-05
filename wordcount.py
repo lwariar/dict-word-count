@@ -1,8 +1,9 @@
 # put your code here.
 import sys
-
 def get_word_count():
+    # read the filename from the command line
     text = open(sys.argv[1])
+
     word_counts = {}
     for line in text:
         # remove the trailing spaces and new line chars
@@ -10,13 +11,17 @@ def get_word_count():
 
         words = line.split(" ")
         for word in words:
-            # remove the commas, question marks and periods at the end of the words
+        # remove the commas, question marks and periods at the end of the words            
             word = word.rstrip(',')
             word = word.rstrip('.')
             word = word.rstrip('?')
+            word = word.lower()
             word_counts[word] = word_counts.get(word, 0) + 1
-    for key in word_counts:
-        print(f"{key} {word_counts[key]}")
+
+    sorted_word_counts = sorted(word_counts.items(), key=lambda x: x[1])
+    for i in sorted_word_counts:
+    	print(i[0], i[1])        
+    
     return word_counts
 
 get_word_count()
